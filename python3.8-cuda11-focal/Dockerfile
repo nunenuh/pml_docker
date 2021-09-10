@@ -1,0 +1,33 @@
+FROM nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu20.04
+
+LABEL maintainer="Lalu Erfandi Maula Yusnu <nunenuh@gmail.com>"
+
+ENV PYTHON_VERSION=3.8
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH /opt/anaconda/bin:$PATH
+
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/anaconda && rm ~/anaconda.sh
+
+RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION && \
+    /opt/anaconda/bin/conda clean -tipsy && \
+    ln -s /opt/anaconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh 
+
+# set bashrc and activate conda
+RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+	/opt/anaconda/bin/conda init bash && \
+    echo "conda activate base" >> ~/.bashrc
+
+# End Conda
+
+# Tini: https://github.com/krallin/tini
+ENV TINI_VERSION v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
+# End Tini
+
+COPY ./start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD [ "/start.sh" ]
