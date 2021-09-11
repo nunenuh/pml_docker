@@ -1,4 +1,4 @@
-FROM nunenuh/pml:cuda10.2-cudnn7-devel-ubuntu18.04
+FROM nunenuh/pml:cuda10.2-base-ubuntu18.04
 
 LABEL maintainer="Lalu Erfandi Maula Yusnu <nunenuh@gmail.com>"
 
