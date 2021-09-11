@@ -20,6 +20,15 @@ RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 
 # End Conda
 
+RUN apt-get install -y build-essential libssl-dev
+RUN pip install cmake
+# RUN systemctl start snapd
+# RUN /usr/bin/snap install cmake --classic
+
+COPY ./conda.yml /conda.yml
+RUN chmod +x /conda.yml
+RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
+
 # Tini: https://github.com/krallin/tini
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
