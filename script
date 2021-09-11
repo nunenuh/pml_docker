@@ -1,0 +1,23 @@
+docker build --tag pml:cuda11.1-cudnn8-devel-ubuntu20.04 .
+docker tag pml:cuda11.1-cudnn8-devel-ubuntu20.04 nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu20.04
+docker push nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu20.04
+
+docker build --tag pml:cuda11.1-cudnn8-devel-ubuntu18.04 .
+docker tag pml:cuda11.1-cudnn8-devel-ubuntu18.04 nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu18.04
+docker push nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu18.04
+
+docker build --tag pml:cuda10.2-cudnn7-devel-ubuntu18.04 .
+docker tag pml:cuda10.2-cudnn7-devel-ubuntu18.04 nunenuh/pml:cuda10.2-cudnn7-devel-ubuntu18.04
+docker push nunenuh/pml:cuda10.2-cudnn7-devel-ubuntu18.04
+
+docker build --tag pml:python3.8-cuda11-focal .
+docker tag pml:python3.8-cuda11-focal nunenuh/pml:python3.8-cuda11-focal
+docker push nunenuh/pml:python3.8-cuda11-focal
+
+docker build --tag pml:python3.7-cuda11-focal .
+docker tag pml:python3.7-cuda11-focal nunenuh/pml:python3.7-cuda11-focal
+docker push nunenuh/pml:python3.7-cuda11-focal
+
+docker build --tag pml:python3.6-cuda10-bionic .
+docker tag pml:python3.6-cuda10-bionic nunenuh/pml:python3.6-cuda10-bionic
+docker push nunenuh/pml:python3.6-cuda10-bionic
