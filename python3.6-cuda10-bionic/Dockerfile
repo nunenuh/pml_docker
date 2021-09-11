@@ -6,7 +6,7 @@ ENV PYTHON_VERSION=3.6
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/anaconda/bin:$PATH
 
-RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh -O ~/anaconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/anaconda && rm ~/anaconda.sh
 
 RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION && \
@@ -15,8 +15,8 @@ RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION && \
 
 # set bashrc and activate conda
 RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-	/opt/anaconda/bin/conda init bash && \
     echo "conda activate base" >> ~/.bashrc
+	# /opt/anaconda/bin/conda init bash && \
 
 # End Conda
 
