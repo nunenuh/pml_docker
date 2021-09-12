@@ -1,23 +1,21 @@
 version: '3'
-# services:
-#   latest:
-#     build: ./python3.7
-#     image: tiangolo/python-machine-learning:latest
-#   python3.7:
-#     build: ./python3.7
-#     image: tiangolo/python-machine-learning:python3.7
-#   python3.6:
-#     build: ./python3.6
-#     image: tiangolo/python-machine-learning:python3.6
-#   cuda9.1-python3.7:
-#     build: ./cuda9.1-python3.7
-#     image: tiangolo/python-machine-learning:cuda9.1-python3.7
-#   cuda9.1-python3.6:
-#     build: ./cuda9.1-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-python3.6
-#   cuda9.1-devel-python3.6:
-#     build: ./cuda9.1-devel-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-devel-python3.6
-#   cuda9.1-cudnn7-devel-python3.6:
-#     build: ./cuda9.1-cudnn7-devel-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-cudnn7-devel-python3.6
+
+services:
+  cuda10.2-base-ubuntu18.04:
+    build: ./cuda10.2-base-ubuntu18.04
+    image: nunenuh/pml:cuda10.2-base-ubuntu18.04
+  cuda10.2-cudnn7-devel-ubuntu18.04:
+    build: ./cuda10.2-cudnn7-devel-ubuntu18.04
+    image: nunenuh/pml:cuda10.2-cudnn7-devel-ubuntu18.04
+  cuda11.1-base-ubuntu18.04:
+    build: ./cuda11.1-base-ubuntu18.04
+    image: nunenuh/pml:cuda11.1-base-ubuntu18.04
+  cuda11.1-cudnn8-devel-ubuntu18.04:
+    build: ./cuda11.1-cudnn8-devel-ubuntu18.04
+    image: nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu18.04
+  cuda11.1-base-ubuntu20.04:
+    build: ./cuda11.1-base-ubuntu20.04
+    image: nunenuh/pml:cuda11.1-base-ubuntu20.04
+  cuda11.1-cudnn8-devel-ubuntu20.04:
+    build: ./cuda11.1-cudnn8-devel-ubuntu20.04
+    image: nunenuh/pml:cuda11.1-cudnn8-devel-ubuntu20.04

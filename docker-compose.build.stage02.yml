@@ -1,23 +1,21 @@
 version: '3'
-# services:
-#   latest:
-#     build: ./python3.7
-#     image: tiangolo/python-machine-learning:latest
-#   python3.7:
-#     build: ./python3.7
-#     image: tiangolo/python-machine-learning:python3.7
-#   python3.6:
-#     build: ./python3.6
-#     image: tiangolo/python-machine-learning:python3.6
-#   cuda9.1-python3.7:
-#     build: ./cuda9.1-python3.7
-#     image: tiangolo/python-machine-learning:cuda9.1-python3.7
-#   cuda9.1-python3.6:
-#     build: ./cuda9.1-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-python3.6
-#   cuda9.1-devel-python3.6:
-#     build: ./cuda9.1-devel-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-devel-python3.6
-#   cuda9.1-cudnn7-devel-python3.6:
-#     build: ./cuda9.1-cudnn7-devel-python3.6
-#     image: tiangolo/python-machine-learning:cuda9.1-cudnn7-devel-python3.6
+
+services:
+  python3.8-cuda11-devel-focal:
+    build: ./python3.8-cuda11-devel-focal
+    image: nunenuh/pml:python3.8-cuda11-devel-focal
+  python3.8-cuda11-base-focal:
+    build: ./python3.8-cuda11-base-focal
+    image: nunenuh/pml:python3.8-cuda11-base-focal
+  python3.7-cuda11-devel-focal:
+    build: ./python3.7-cuda11-devel-focal
+    image: nunenuh/pml:python3.7-cuda11-devel-focal
+  python3.7-cuda11-base-focal:
+    build: ./python3.7-cuda11-base-focal
+    image: nunenuh/pml:python3.7-cuda11-base-focal
+  python3.6-cuda10-devel-bionic:
+    build: ./python3.6-cuda10-devel-bionic
+    image: nunenuh/pml:python3.6-cuda10-devel-bionic
+  python3.6-cuda10-base-bionic:
+    build: ./python3.6-cuda10-base-bionic
+    image: nunenuh/pml:python3.6-cuda10-base-bionic
