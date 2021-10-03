@@ -27,6 +27,9 @@ RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 # End Tini
 
+RUN apt-get update && apt-get install -y build-essential libssl-dev
+RUN pip install cmake
+
 COPY ./start.sh /start.sh
 RUN chmod +x /start.sh
 

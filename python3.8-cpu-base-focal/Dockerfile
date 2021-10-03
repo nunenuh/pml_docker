@@ -20,7 +20,7 @@ RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 
 # End Conda
 
-RUN apt-get install -y build-essential libssl-dev
+RUN apt-get update && apt-get install -y build-essential libssl-dev
 RUN pip install cmake
 # RUN systemctl start snapd
 # RUN /usr/bin/snap install cmake --classic
