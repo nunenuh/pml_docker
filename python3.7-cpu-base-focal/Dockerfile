@@ -9,8 +9,7 @@ ENV PATH /opt/anaconda/bin:$PATH
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/anaconda && rm ~/anaconda.sh
 
-RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION pytorch torchvision torchaudio \
-    cudatoolkit=11.1 -c pytorch-lts -c nvidia && \
+RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION pytorch torchvision torchaudio cpuonly -c pytorch && \
     /opt/anaconda/bin/conda clean -tipsy && \
     ln -s /opt/anaconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh 
 
@@ -28,26 +27,20 @@ ENTRYPOINT ["/tini", "--"]
 # End Tini
 
 
-# RUN /opt/anaconda/bin/conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia --y
-# RUN /opt/anaconda3/bin/pip install pytorch-lightning==1.4.5 mlflow==1.20 \
-#     tensorboard==2.6.0 tensorflow-gpu==2.6.0 torchmetrics==0.5.1 transformers==4.1.1 \
-#     scikit-learn==0.23.2 spacy==2.3.2 spacy-lookups-data==0.3.2 nltk==3.5 \
-#     opencv-python==4.4.0.46 opencv-python-headless==4.5.1.48 imutils==0.5.3 \
-#     Augmentor==0.2.8 imgaug==0.4.0 albumentations==0.5.2 deskew==0.10.3 pytesseract \
-#     deepface==0.0.68 face-recognition==1.3.0 face-recognition-models==0.3.0 mtcnn==0.1.1 
-
-# RUN /opt/anaconda3/bin/pip install SQLAlchemy PyMySQL==0.10.1 psycopg2==2.9.1 
-# RUN /opt/anaconda3/bin/pip install graphene==2.1.9 graphql-core==2.3.2 graphql-relay==2.0.1
-# RUN /opt/anaconda3/bin/pip install seqeval==0.0.12 docker==5.0.0  
-# RUN /opt/anaconda3/bin/pip install fire==0.3.1 fonttools==4.26.2 Shapely==1.7.1 \
-#     terminado==0.9.3 Twisted==20.3.0 typing-extensions
-
 RUN apt-get update && apt-get install -y build-essential libssl-dev
 RUN pip install cmake
 
-COPY ./conda.yml /conda.yml
-RUN chmod +x /conda.yml
-RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
+RUN pip install onnx onnxruntime tensorflow pytorch-lightning==1.4.5 mlflow==1.20 \
+    deepface==0.0.68 deskew==0.10.33 dlib==19.22.1 face-recognition==1.3.0 face-recognition-models==0.3.0 \
+    fire flask fonttools graphene graphql-core graphql-relay gunicorn \
+    tensorboard==2.6.0 tensorboardx==2.4 tqdm==4.62.2 transformers==4.1.1 sqlalchemy spacy seqeval shapely \
+    scikit-learn scikit-image retina-face==0.0.5 psycopg2==2.9.1 opencv-python==4.4.0.46 opencv-python-headless==4.5.1.48 \
+    pandas  numpy multidict mtcnn==0.1.1 keras==2.6.0 keras-preprocessing==1.1.2 databricks-cli==0.15.0 \
+    albumentations==1.0.3  alembic==1.4.1 augmentor==0.2.8 
+
+#COPY ./req.txt /req.txt
+#RUN chmod +x /req.txt
+#RUN pip install -r req.txt --no-cache-dir
 
 
 COPY ./start.sh /start.sh
