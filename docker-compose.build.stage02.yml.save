@@ -7,27 +7,20 @@ services:
 #  python3.8-cuda11-base-focal:
 #    build: ./python3.8-cuda11-base-focal
 #    image: nunenuh/pml:python3.8-cuda11-base-focal
-  python3.8-cpu-base-focal:
-    build: ./python3.8-cpu-base-focal
-    image: nunenuh/pml:python3.8-cpu-base-focal
+# python3.8-cuda11-base-focal:
+#    build: ./python3.8-cuda11-base-focal
+#    image: nunenuh/pml:python3.8-cuda11-base-focal
 
 #  python3.7-cuda11-devel-focal:
 #    build: ./python3.7-cuda11-devel-focal
 #    image: nunenuh/pml:python3.7-cuda11-devel-focal
 #  python3.7-cuda11-base-focal:
 #    build: ./python3.7-cuda11-base-focal
-  python3.7-cpu-base-focal:
-    build: ./python3.7-cpu-base-focal
-    image: nunenuh/pml:python3.7-cpu-base-focal
-
 #    image: nunenuh/pml:python3.7-cuda11-base-focal
+
 #  python3.6-cuda10-devel-bionic:
 #    build: ./python3.6-cuda10-devel-bionic
 #    image: nunenuh/pml:python3.6-cuda10-devel-bionic
 #  python3.6-cuda10-base-bionic:
 #    build: ./python3.6-cuda10-base-bionic
 #    image: nunenuh/pml:python3.6-cuda10-base-bionic
-
-#  python3.6-cpu-base-bionic:
-#    build: ./python3.6-cpu-base-bionic
-#    image: nunenuh/pml:python3.6-cpu-base-bionic

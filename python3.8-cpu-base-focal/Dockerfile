@@ -9,7 +9,7 @@ ENV PATH /opt/anaconda/bin:$PATH
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/anaconda && rm ~/anaconda.sh
 
-RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION && \
+RUN /opt/anaconda/bin/conda install -y python=$PYTHON_VERSION pytorch torchvision torchaudio cpuonly -c pytorch-lts && \
     /opt/anaconda/bin/conda clean -tipsy && \
     ln -s /opt/anaconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh 
 
@@ -25,9 +25,13 @@ RUN pip install cmake
 # RUN systemctl start snapd
 # RUN /usr/bin/snap install cmake --classic
 
-COPY ./conda.yml /conda.yml
-RUN chmod +x /conda.yml
-RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
+#COPY ./conda.yml /conda.yml
+#RUN chmod +x /conda.yml
+#RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
+
+COPY ./req.txt /req.txt
+RUN chmod +x /req.txt
+RUN pip install -r req.txt --no-cache-dir
 
 RUN apt update && apt install software-properties-common -y
 RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && apt update \
