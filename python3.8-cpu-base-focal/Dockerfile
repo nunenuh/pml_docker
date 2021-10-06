@@ -20,7 +20,7 @@ RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 
 # End Conda
 
-RUN apt-get install -y build-essential libssl-dev
+RUN apt-get update && apt-get install -y build-essential libssl-dev
 RUN pip install cmake
 # RUN systemctl start snapd
 # RUN /usr/bin/snap install cmake --classic
@@ -28,6 +28,15 @@ RUN pip install cmake
 COPY ./conda.yml /conda.yml
 RUN chmod +x /conda.yml
 RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
+
+RUN apt update && apt install software-properties-common -y
+RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && apt update \
+    && apt install libjasper1 libjasper-dev
+
+RUN apt update && apt install -y cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
+    python-dev python-numpy libtbb2 \
+    libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
+    libatlas-base-dev libjasper-dev python3-pyqt5
 
 # Tini: https://github.com/krallin/tini
 ENV TINI_VERSION v0.18.0

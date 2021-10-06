@@ -20,6 +20,7 @@ RUN echo ". /opt/anaconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 
 # End Conda
 
+
 # Tini: https://github.com/krallin/tini
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini

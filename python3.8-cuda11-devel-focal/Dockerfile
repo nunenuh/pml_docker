@@ -29,6 +29,15 @@ COPY ./conda.yml /conda.yml
 RUN chmod +x /conda.yml
 RUN /opt/anaconda/bin/conda env update -f conda.yml --prune 
 
+RUN apt update && apt install software-properties-common -y
+RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && apt update \
+    && apt install libjasper1 libjasper-dev
+
+RUN apt update && apt install -y cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
+    python-dev python-numpy libtbb2 \
+    libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
+    libatlas-base-dev libjasper-dev python3-pyqt5
+
 # Tini: https://github.com/krallin/tini
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
