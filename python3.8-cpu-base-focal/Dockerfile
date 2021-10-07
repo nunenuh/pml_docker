@@ -33,6 +33,10 @@ COPY ./req.txt /req.txt
 RUN chmod +x /req.txt
 RUN pip install -r req.txt --no-cache-dir
 
+COPY ./deepface_model_downloader.py /deepface_model_downloader.py
+RUN chmod +x /deepface_model_downloader.py
+RUN python 
+
 RUN apt update && apt install software-properties-common -y
 RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && apt update \
     && apt install libjasper1 libjasper-dev

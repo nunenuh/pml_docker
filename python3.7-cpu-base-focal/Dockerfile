@@ -29,7 +29,7 @@ ENTRYPOINT ["/tini", "--"]
 RUN apt-get update && apt-get install -y build-essential libssl-dev
 RUN pip install cmake
 
-RUN pip install onnx onnxruntime tensorflow pytorch-lightning==1.4.5 mlflow==1.20 \
+RUN pip install onnx onnxruntime tensorflow pytorch-lightning==1.4.5  \
     deepface==0.0.68 deskew==0.10.33 dlib==19.22.1 face-recognition==1.3.0 face-recognition-models==0.3.0 \
     fire flask fonttools graphene graphql-core graphql-relay gunicorn \
     tensorboard==2.6.0 tensorboardx==2.4 tqdm==4.62.2 transformers==4.1.1 sqlalchemy spacy seqeval shapely \
@@ -40,6 +40,10 @@ RUN pip install onnx onnxruntime tensorflow pytorch-lightning==1.4.5 mlflow==1.2
 #COPY ./req.txt /req.txt
 #RUN chmod +x /req.txt
 #RUN pip install -r req.txt --no-cache-dir
+
+COPY ./deepface_model_downloader.py /deepface_model_downloader.py
+RUN chmod +x /deepface_model_downloader.py
+RUN python 
 
 RUN apt update && apt install software-properties-common -y
 RUN add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && apt update \
